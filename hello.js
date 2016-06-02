@@ -53,15 +53,26 @@ var dangerousWords = [
 'Tyrion',
 'Hodor',
 'Ramsey',
+'Hodor',
+'Bran',
+'Stark',
 'white walker',
 'GoT',
 'GOT',
-'Game Of Thrones',
-'GAME OF THRONES',
+'THRONES',
+'Thrones',
+'thrones',
+'throne',
 'Khaleesi',
 'Benjen',
+'spoiler',
 'Spoiler',
 'SPOILER',
+'Jorah',
+'Daario',
+'Daenerys',
+'Targaryen',
+
 ];
 
 console.log('Loaded Blocker');
