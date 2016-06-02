@@ -3,14 +3,13 @@
 
   "name": "9gag GoT Spoiler Blocker",
   "description": "Block Game of Thrones Spoilers on 9gag",
-  "version": "1.0",
+  "version": "1.2",
 
   "page_action": {
     "default_icon": "gotblock.png",
     "default_popup": "popup.html"
   },
   "permissions": [
-    "tabs",
     "*://*.9gag.com/*"
   ],
   "content_scripts": [

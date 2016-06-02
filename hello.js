@@ -20,6 +20,31 @@ function containsElt(stringToCheck, substringsArray) {
   return false;
 }
 
+
+// this function takes a dom node and applies a callback
+// function when the dom node changes
+var observeDOM = (function(){
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+        eventListenerSupported = window.addEventListener;
+
+    return function(obj, callback){
+        if( MutationObserver ){
+            // define a new observer
+            var obs = new MutationObserver(function(mutations, observer){
+                if( mutations[0].addedNodes.length || mutations[0].removedNodes.length )
+                    callback();
+            });
+            // have the observer observe foo for changes in children
+            obs.observe( obj, { childList:true, subtree:true });
+        }
+        else if( eventListenerSupported ){
+            obj.addEventListener('DOMNodeInserted', callback, false);
+            obj.addEventListener('DOMNodeRemoved', callback, false);
+        }
+    }
+})();
+
+
 //Words to be filtered
 var dangerousWords = [
 'Jon Snow',
@@ -65,14 +90,13 @@ function constructSpoilerHtml(idx) {
 }
 
 
-
 function replaceNode(oldNode, newNode) {
 	oldNode.parentNode.replaceChild(newNode, oldNode);
 }
 
 function checkForSpoilers() {
+	console.log('checking for spoilers...');
 	var articles = document.getElementsByTagName("ARTICLE");
-
 	for (var i = 0; i < articles.length; i++) {
 		var article = articles[i];
 
@@ -87,11 +111,9 @@ function checkForSpoilers() {
 		}
 
 	}
-
-	setTimeout(checkForSpoilers, 100);
 }
 
-
+// Execution
 checkForSpoilers();
-
-//setTimeout(removeWrapper, 2500);
+var wrapperSection = document.getElementById("list-view-2");
+observeDOM( wrapperSection , checkForSpoilers);
