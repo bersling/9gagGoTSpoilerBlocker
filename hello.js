@@ -72,7 +72,8 @@ var dangerousWords = [
 'Daario',
 'Daenerys',
 'Targaryen',
-
+'Cersei',
+'Baratheon'
 ];
 
 console.log('Loaded Blocker');
